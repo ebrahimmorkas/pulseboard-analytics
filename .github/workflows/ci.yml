@@ -28,3 +28,33 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+
+  integration:
+    name: Migrations & integration tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: pulseboard
+          POSTGRES_PASSWORD: pulseboard
+          POSTGRES_DB: pulseboard
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U pulseboard"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://pulseboard:pulseboard@localhost:5432/pulseboard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run db:migrate

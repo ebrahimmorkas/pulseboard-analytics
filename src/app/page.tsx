@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Activity, Cookie, Gauge, Globe, LineChart, ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { getCurrentUser } from "@/lib/auth/session";
 
 const features = [
   {
@@ -31,7 +33,9 @@ const features = [
   },
 ];
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  if (await getCurrentUser()) redirect("/sites");
+
   return (
     <div className="min-h-screen bg-white">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 sm:px-6">

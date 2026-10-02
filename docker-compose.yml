@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pulseboard
+      POSTGRES_PASSWORD: pulseboard
+      POSTGRES_DB: pulseboard
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pulseboard"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Redis is optional. Start it with: docker compose --profile redis up -d
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    profiles: ["redis"]
+    ports:
+      - "6381:6379"
+
+volumes:
+  postgres-data:

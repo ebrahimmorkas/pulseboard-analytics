@@ -1,7 +1,9 @@
 {
   "name": "pulseboard-analytics",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Privacy-friendly web analytics built with Next.js, PostgreSQL, Drizzle ORM and optional Redis.",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Settings } from "lucide-react";
 import { z } from "zod";
 import { Dashboard } from "@/components/dashboard/dashboard";
+import { LiveVisitors } from "@/components/dashboard/live-visitors";
 import { requireUser } from "@/lib/auth/guards";
 import { getOwnedSite } from "@/lib/queries/sites";
 import { parseFilters, parsePeriod } from "@/lib/stats/period";
@@ -24,7 +25,7 @@ export default async function SiteDashboardPage(props: PageProps<"/sites/[siteId
       period={parsePeriod(searchParams.period)}
       filters={parseFilters(searchParams)}
       headerSlot={
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div>
             <h1 className="text-2xl font-bold text-slate-900">{site.name}</h1>
             <p className="text-sm text-slate-500">{site.domain}</p>
@@ -36,6 +37,7 @@ export default async function SiteDashboardPage(props: PageProps<"/sites/[siteId
           >
             <Settings className="size-5" />
           </Link>
+          <LiveVisitors siteId={site.id} />
         </div>
       }
     />

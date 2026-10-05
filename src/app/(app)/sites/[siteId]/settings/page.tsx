@@ -51,7 +51,7 @@ export default async function SiteSettingsPage(props: PageProps<"/sites/[siteId]
         <CardHeader>
           <CardTitle>Tracking snippet</CardTitle>
           <CardDescription>
-            Add this to the &lt;head&gt; of every page. It is under 1 KB, sets no cookies and tracks
+            Add this to the &lt;head&gt; of every page. It is about 1 KB, sets no cookies and tracks
             single-page app navigations automatically.
           </CardDescription>
         </CardHeader>

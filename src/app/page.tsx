@@ -12,7 +12,7 @@ const features = [
   },
   {
     icon: Gauge,
-    title: "Under 1 KB script",
+    title: "Tiny ~1 KB script",
     text: "A tiny, dependency-free tracker that never slows your site down.",
   },
   { icon: Activity, title: "Real-time", text: "See how many people are on your site right now." },
